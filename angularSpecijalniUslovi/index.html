@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<script type="text/javascript" src="angular.js"></script>
+		<script type="text/javascript" src="angular-route.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+		<title>indeks</title>
+	</head>
+	<body>
+		<h1>INDEKS</h1>
+		<div ng-app="wafepaApp">
+			<h1>Angular aplikacija</h1>
+			<!-- <ng-view></ng-view> -->
+ 			<div ng-controller="myCtrl">
+				ime spoljasnji scope: {{ime}}<br/>
+				prezime: {{prezime}}<br/>
+				ime spoljasnji scope: <input ng-model="ime" ng-change="proba()"/>
+				<ul>
+					<li ng-repeat='item in lista'>{{item}}</li>
+				</ul>
+				<button ng-disabled="!ime" ng-click="obrisiIme()">obrisi ime</button>
+				<div ng-controller="myNewCtrl">
+					poruka: {{poruka}} <br/>
+					ime unutrasnji scope: {{ime}}<br/>
+					ime unutrasnji scope: <input ng-model="ime"/>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
