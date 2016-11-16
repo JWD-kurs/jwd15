@@ -16,7 +16,8 @@ app.controller('myCtrl', function($scope){
 		console.log('!!!');
 	};	
 });
-app.controller('myNewCtrl',function($scope){
+app.controller('myNewCtrl',function ($scope){
 	$scope.poruka='hello world';
-});
+}
+);
 

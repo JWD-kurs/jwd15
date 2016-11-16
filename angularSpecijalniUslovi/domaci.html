@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<script type="text/javascript" src="angular.js"></script>
+		<script type="text/javascript" src="domaci.js"></script>
+		<title>indeks</title>
+	</head>
+	<body ng-app="domaciApp">
+		<h1>DOMACI</h1>
+		<div ng-controller="zadatak1Ctrl">
+			<input ng-model="vrednost"/><button ng-disabled="!vrednost" ng-click="obrisi()">obrisi</button>
+		</div>
+
+		<div ng-controller="zadatak2Ctrl">
+			polje1: <input ng-model="vrednost1" ng-change="prebaci()"/> <br/>
+			polje2: <input ng-model="vrednost2"/>
+		</div>
+	</body>
+</html>
