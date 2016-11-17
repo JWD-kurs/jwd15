@@ -1,1 +1,10 @@
 <h2>Activities</h2>
+
+<div>
+	name: <input ng-model="act.name"/><br/>
+	<button ng-click="save()">save</button>
+</div>
+
+<ul>
+	<li ng-repeat="activity in activities">{{activity.name}}<button ng-click="delete(activity.id)">delete</button><button ng-click="edit(activity)">edit</button><button ng-click="editInNewPage(activity)">edit in new page</button></li>
+</ul>

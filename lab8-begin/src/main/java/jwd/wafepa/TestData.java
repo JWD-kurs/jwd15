@@ -23,7 +23,7 @@ public class TestData {
 
 	@Autowired
 	private ActivityService activityService;
-
+	
 	@PostConstruct
 	public void init(){
 	       for (int i = 1; i <= 100; i++) {
@@ -43,8 +43,8 @@ public class TestData {
 	                user.addAddress(address);
 	                addressService.save(address);
 	            }
-	            Activity a = new Activity("Activity "+i);
-	            activityService.save(a);
+	            Activity activity = new Activity("Activity "+i);
+	            activityService.save(activity);
 	       }
 	}
 }
