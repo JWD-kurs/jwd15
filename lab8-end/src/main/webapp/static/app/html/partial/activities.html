@@ -1,11 +1,40 @@
+<div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+
 <h2>Activities</h2>
-<div>
-	naziv: <input ng-model="act.name"/> <button ng-disabled="!act.name" ng-click="saveActivity()">save</button>
-</div>
-<ul>
+<form class="form-inline">
+	<div class="form-group">
+		<label for="name">naziv:</label> 
+		<input class="form-control" id="name" ng-model="act.name"/> 
+	</div>
+	<button class="btn btn-success" ng-disabled="!act.name" ng-click="saveActivity()">save</button>
+</form>
+<select ng-model="tableCls">
+	<option value="table-striped">table-striped</option>
+	<option value="table-bordered">table-bordered</option>
+</select>
+<table ng-class="'table '+tableCls">
+	<thead>
+		<tr>
+			<th>activity name</th>
+			<th>action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="activity in activities">
+			<td>{{activity.name}}</td>
+			<td class="btn-group">
+				<button class="btn btn-danger btn-xs" ng-click="deleteActivity(activity.id)">delete</button>
+				<button class="btn btn-success btn-xs"  ng-click="editActivity(activity)">edit</button>
+				<button class="btn btn-primary btn-xs" ng-click="editNewPage(activity)">edit new page</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- <ul>
 	<li ng-repeat="activity in activities">{{activity.name}} 
 		<button ng-click="deleteActivity(activity.id)">delete</button>
 		<button ng-click="editActivity(activity)">edit</button>
 		<button ng-click="editNewPage(activity)">edit new page</button>
 	</li>
-</ul>
+</ul> -->

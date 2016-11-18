@@ -1,4 +1,4 @@
-var wafepaApp = angular.module('wafepaApp', ['ngRoute']);
+var wafepaApp = angular.module('wafepaApp', ['ngRoute','ui.bootstrap']);
 
 wafepaApp.controller('MyController', function($scope) {
 	
@@ -37,6 +37,21 @@ wafepaApp.config(['$routeProvider', function($routeProvider) {
 
 
 wafepaApp.controller('activitiesCtrl', function($scope,$http,$location){
+  $scope.tableClass = function(){
+  	return 'table table-bordered'
+  }
+
+  $scope.alerts = [
+  ];
+
+  $scope.addAlert = function() {
+    $scope.alerts.push({msg: 'Another alert!'});
+  };
+
+  $scope.closeAlert = function(index) {
+    $scope.alerts.splice(index, 1);
+  };
+
 	var ucitajAktivnosti = function () {
 		$http.get('api/activities')
 			.success(function (data, status) {
@@ -60,8 +75,10 @@ wafepaApp.controller('activitiesCtrl', function($scope,$http,$location){
 		if(!$scope.act.id){
 			$http.post('api/activities',$scope.act)
 			.success(function () {
+				$scope.alerts.push({ type: 'success', 
+					msg: 'Aktivnost '+$scope.act.name+' je uspesno sacuvana.' });
+				});
 				ucitajAktivnosti();
-			});
 		}
 		else{
 			$http.put('api/activities/'+$scope.act.id,$scope.act)
