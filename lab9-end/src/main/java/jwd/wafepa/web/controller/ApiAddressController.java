@@ -36,26 +36,26 @@ public class ApiAddressController {
 	@Autowired
 	private AddressToAddressDTO toDTO;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<AddressDTO>> get(@PathVariable Long userId) {
+//	@RequestMapping(method = RequestMethod.GET)
+//	public ResponseEntity<List<AddressDTO>> get(@PathVariable Long userId) {
+//
+//		List<Address> addresses = addressService.findByUserId(userId);
+//
+//		return new ResponseEntity<>(toDTO.convert(addresses), HttpStatus.OK);
+//	}
 
-		List<Address> addresses = addressService.findByUserId(userId);
-
-		return new ResponseEntity<>(toDTO.convert(addresses), HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<AddressDTO> get(@PathVariable Long id,
-			@PathVariable Long userId) {
-
-		Address address = addressService.findByIdAndUser(id, userId);
-
-		if (address == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-
-		return new ResponseEntity<>(toDTO.convert(address), HttpStatus.OK);
-	}
+//	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+//	public ResponseEntity<AddressDTO> get(@PathVariable Long id,
+//			@PathVariable Long userId) {
+//
+//		Address address = addressService.findByIdAndUser(id, userId);
+//
+//		if (address == null) {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+//
+//		return new ResponseEntity<>(toDTO.convert(address), HttpStatus.OK);
+//	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<AddressDTO> add(
@@ -72,25 +72,25 @@ public class ApiAddressController {
 		return new ResponseEntity<>(toDTO.convert(persisted), HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json")
-	public ResponseEntity<AddressDTO> edit(@PathVariable Long id,
-			@RequestBody @Validated AddressDTO editedAddress,
-			@PathVariable Long userId) {
-
-		if (id == null || !id.equals(editedAddress.getId())) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-
-		Address oldAddress = addressService.findByIdAndUser(id, userId);
-		if (oldAddress == null) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-
-		Address persisted = addressService.save(toAddress
-				.convert(editedAddress));
-
-		return new ResponseEntity<>(toDTO.convert(persisted), HttpStatus.OK);
-	}
+//	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json")
+//	public ResponseEntity<AddressDTO> edit(@PathVariable Long id,
+//			@RequestBody @Validated AddressDTO editedAddress,
+//			@PathVariable Long userId) {
+//
+//		if (id == null || !id.equals(editedAddress.getId())) {
+//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//		}
+//
+//		Address oldAddress = addressService.findByIdAndUser(id, userId);
+//		if (oldAddress == null) {
+//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//		}
+//
+//		Address persisted = addressService.save(toAddress
+//				.convert(editedAddress));
+//
+//		return new ResponseEntity<>(toDTO.convert(persisted), HttpStatus.OK);
+//	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<AddressDTO> delete(@PathVariable Long id,

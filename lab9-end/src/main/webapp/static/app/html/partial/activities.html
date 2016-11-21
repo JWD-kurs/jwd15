@@ -9,18 +9,32 @@
 </div>
 <button type="button" class='btn btn-default' ng-click="addAlert()">Add Alert</button> -->
 
-<form class="form">
-	<div class="form-group">
-		<label for="name">naziv:</label> 
-		<input class="form-control" id="name" ng-model="act.name"/> 
-	</div>
-	<button class="btn btn-primary" ng-disabled="!act.name" ng-click="saveActivity()">save</button>
-</form>
+<div class="container">
+	<form class="form">
+		<div class="form-group">
+			<label for="name">naziv:</label> 
+			<input class="form-control" id="name" ng-model="act.name"/> 
+		</div>
+		<button class="btn btn-primary" ng-disabled="!act.name" ng-click="saveActivity()">save</button>
+	</form>
 
-<div>
-	<button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
+	<form class="form">
+		<div class="form-group">
+			<label for="pretraga">pretraga:</label> 
+			<input class="form-control" id="pretraga" ng-model="pretraga"/> 
+		</div>
+		<button class="btn btn-primary" ng-disabled="!pretraga" ng-click="findActivities()">find</button>
+	</form>
+
 </div>
-
+<div>
+	<button class="btn btn-default" ng-click="open()">Open me!</button>
+</div>
+<!-- dodato -->
+<div class="btn-group pull-right">
+	<button class="btn btn-primary" ng-disabled="page==0" ng-click="changePage(-1)">prev</button>
+	<button class="btn btn-primary" ng-disabled="activities.length<10" ng-click="changePage(1)">next</button>
+</div>
 <table class="table table-striped">
 	<thead>
 	  <tr>

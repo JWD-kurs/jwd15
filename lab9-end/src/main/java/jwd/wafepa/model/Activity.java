@@ -1,9 +1,16 @@
 package jwd.wafepa.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +33,16 @@ public class Activity {
 	@Column(name="admin_comment")
 	private String adminComment="test";
 	
+	@ManyToMany()
+	private List<User> users = new ArrayList<>();
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 
 	public Activity() {
 		super();

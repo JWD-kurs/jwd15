@@ -37,8 +37,25 @@ wafepaApp.config(['$routeProvider', function($routeProvider) {
 
 
 wafepaApp.controller('activitiesCtrl', function($scope,$http,$location,$uibModal){
+
+	$scope.findActivities = function () {
+		ucitajAktivnosti();
+	}
+
+	/*dodato*/
+	$scope.page=0;
+	$scope.changePage = function(i){
+		$scope.page+=i;
+		ucitajAktivnosti();
+	}
 	var ucitajAktivnosti = function () {
-		$http.get('api/activities')
+		var parameters = {}
+		/*dodato*/
+		parameters.page = $scope.page;
+		if($scope.pretraga){
+			parameters.name = $scope.pretraga;
+		}
+		$http.get('api/activities', { params: parameters})
 			.success(function (data, status) {
 				$scope.activities = data;
 				$scope.act = {};

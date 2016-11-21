@@ -23,8 +23,8 @@ public class Address {
 	@Column
 	private String number;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private User user;
+//	@ManyToOne(fetch=FetchType.LAZY)
+//	private User user;
 	
 	
 	
@@ -46,17 +46,17 @@ public class Address {
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	public User getUser() {
-		
-		return user;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
-		if(user!=null && !user.getAddresses().contains(this)){
-			user.getAddresses().add(this);
-		}
-	}
+//	public User getUser() {
+//		
+//		return user;
+//	}
+//	
+//	public void setUser(User user) {
+//		this.user = user;
+//		if(user!=null && !user.getAddresses().contains(this)){
+//			user.getAddresses().add(this);
+//		}
+//	}
 	
 	
 }

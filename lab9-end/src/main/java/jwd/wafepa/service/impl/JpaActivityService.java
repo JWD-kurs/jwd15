@@ -2,13 +2,15 @@ package jwd.wafepa.service.impl;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import jwd.wafepa.model.Activity;
+import jwd.wafepa.model.User;
 import jwd.wafepa.repository.ActivityRepository;
 import jwd.wafepa.service.ActivityService;
 
@@ -26,8 +28,8 @@ public class JpaActivityService
 	}
 
 	@Override
-	public List<Activity> findAll() {
-		return activityRepository.findAll();
+	public Page<Activity> findAll(int page) {
+		return activityRepository.findAll(new PageRequest(page, 10));
 	}
 
 	@Override
@@ -37,7 +39,7 @@ public class JpaActivityService
 
 	@Override
 	public List<Activity> save(List<Activity> activities) {
-		return activityRepository.save(activities);
+		return (List<Activity>)activityRepository.save(activities);
 	}
 
 	@Override
@@ -59,8 +61,8 @@ public class JpaActivityService
 	}
 
 	@Override
-	public List<Activity> findByName(String name) {
-		return activityRepository.findByNameLike("%" + name + "%");
+	public Page<Activity> findByName(String name, int page) {
+		return activityRepository.findByNameLike("%" + name + "%",new PageRequest(page, 10));
 	}
 	
 	//@PostConstruct

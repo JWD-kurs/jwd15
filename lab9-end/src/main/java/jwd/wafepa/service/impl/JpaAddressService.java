@@ -42,22 +42,22 @@ public class JpaAddressService
 		addressRepository.delete(id);
 	}
 
-	@Override
-	public List<Address> findByUser(User user) {
-		return addressRepository.findByUser(user);
-	}
-
-	@Override
-	public Address findByIdAndUser(Long id, Long userId) {
-		
-		return addressRepository.findByIdAndUserId(id, userId);
-	}
-
-	@Override
-	public List<Address> findByUserId(Long userId) {
-		
-		return addressRepository.findByUserId(userId);
-	}
+//	@Override
+//	public List<Address> findByUser(User user) {
+//		return addressRepository.findByUser(user);
+//	}
+//
+//	@Override
+//	public Address findByIdAndUser(Long id, Long userId) {
+//		
+//		return addressRepository.findByIdAndUserId(id, userId);
+//	}
+//
+//	@Override
+//	public List<Address> findByUserId(Long userId) {
+//		
+//		return addressRepository.findByUserId(userId);
+//	}
 
 
 }
