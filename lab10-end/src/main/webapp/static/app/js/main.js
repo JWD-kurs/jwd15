@@ -29,12 +29,75 @@ wafepaApp.config(['$routeProvider', function($routeProvider) {
             templateUrl : '/static/app/html/partial/activities.html',
             controller: 'activitiesCtrl'
         })
+        .when('/books', {
+            templateUrl : '/static/app/html/partial/books.html',
+            controller: 'booksCtrl'
+        })
         .otherwise({
             redirectTo: '/',
         });
 }]);
 
-
+wafepaApp.controller('booksCtrl', function($scope,$http){
+	var loadAuthors = function(){
+		$http.get('api/authors')
+		.success(function (data, status) {
+			$scope.authors = data;
+		})
+		.error(function (data, status) {
+			console.log(data);
+			console.log(status);
+		})
+	};
+	var loadBooks = function(){
+		$http.get('api/books')
+		.success(function (data, status) {
+			$scope.books = data;
+		})
+		.error(function (data, status) {
+			console.log(data);
+			console.log(status);
+		})
+	};
+	//JavaScript pozivi su neblokirajuci
+	//pocece izvrsavanje loadAuthors() pre nego sto se zavrsi loadBooks()
+	loadBooks();
+	loadAuthors();
+	$scope.formatAuthors = function (authors) {
+		var retVal = '';
+		for (var i = 0; i < authors.length; i++) {
+			retVal += authors[i].firstName+' '+authors[i].lastName+', ';
+		};
+		return retVal.substring(0,retVal.length-2);
+	};
+	$scope.saveBook = function () {
+		var bookDTO = {title:$scope.newBook.title};
+		bookDTO.authors = [];
+		for (var i = $scope.newBook.authors.length - 1; i >= 0; i--) {
+			bookDTO.authors.push({id:$scope.newBook.authors[i]});
+		};
+		// $http.post('api/books',bookDTO)
+		// ng-options prosledjuje ceo objekat, pa nije potrebno formatiranje
+		if(!$scope.newBook.id){
+			$http.post('api/books',$scope.newBook)
+			.success(function () {
+				loadBooks()
+			});
+		}
+		else{
+			$http.put('api/books/'+$scope.newBook.id,$scope.newBook)
+			.success(function () {
+				loadBooks()
+			});			
+		}
+	};
+	$scope.editBook = function (book) {
+		$scope.newBook = angular.copy(book);
+	}
+	$scope.formatAuthor =function (author) {
+		return author.firstName + ' ' + author.lastName;
+	};
+});
 
 wafepaApp.controller('activitiesCtrl', function($scope,$http,$location,$uibModal){
 	$scope.currentPage=0;

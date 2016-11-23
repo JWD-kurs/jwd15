@@ -2,20 +2,18 @@ package jwd.wafepa.service.impl;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
 
 import jwd.wafepa.model.Activity;
 import jwd.wafepa.model.User;
 import jwd.wafepa.repository.ActivityRepository;
 import jwd.wafepa.repository.UserRepository;
 import jwd.wafepa.service.ActivityService;
-import jwd.wafepa.service.UserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
